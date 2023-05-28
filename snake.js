@@ -7,7 +7,7 @@ $(document).ready(function(){
     let best_str = localStorage.getItem("Best")
     let pname = localStorage.getItem("Player")
     if(!pname || pname === ""){
-        window.location.replace("zmijica-uputstvo.html")
+        window.location.replace("snake-settings.html")
     }
 
     let players_best = [];
@@ -209,7 +209,7 @@ $(document).ready(function(){
             (snake.y >= conf.dim || snake.y < 0) ||
             (cell.attr("type") == "snake")  
         ){
-            alert("Kraj igre!");
+            alert("Game Ended!");
             clearInterval(handle);
             clearInterval(handle1);
             return true;
@@ -261,7 +261,7 @@ $(document).ready(function(){
             localStorage.setItem("Best", 
                 JSON.stringify(players_best)
             );
-            window.location.replace("zmijica-uputstvo.html");
+            window.location.replace("snake-settings.html");
         }
     }
     

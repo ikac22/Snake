@@ -33,10 +33,10 @@ $(document).ready(function(){
                 if(pname != ""){
                     localStorage.setItem("Player", pname);
                     loadInStorage();
-                    window.location.replace("zmijica-igra.html")
+                    window.location.replace("snake-game.html")
                 }   
                 else{
-                    alert("fill out the name!");
+                    alert("Please fill in your name!");
                 }
             }
         }
