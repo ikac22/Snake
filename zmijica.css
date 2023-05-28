@@ -1,0 +1,38 @@
+table{
+    border: solid 1px white;
+}
+
+td {
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    padding: 0; 
+    margin: 0;
+ }
+
+.dot {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #bbb;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}
+
+.red-dot {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(247, 3, 3);
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}
+  
+.table-content{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}

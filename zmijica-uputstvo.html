@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="zmijica_dodatno/bootstrap.min.css">
+    <script src="zmijica_dodatno/jquery-3.7.0.min.js"></script>
+    <script src="zmijica_dodatno/bootstrap.min.js"></script>
+    <script src="zmijica-home.js"></script>
+</head>
+<body class="bg-dark">
+    <div class="container bg-dark">
+        <div class="row justify-content-center text-center text-light">
+            <div class="col-sm-12 text-center">
+                <h1>ZMIJICA</h1>
+            </div>
+            <div class="col-sm-12 mt-5">
+                <h2>Uputstvo</h2>
+            </div>
+            <div class="col-sm-12 bg-light"></div>
+            <div class="col-sm-12">
+                <p>Potrebno je prvo konfigurisati igru po svojim potrebama.</p>
+            </div>
+            <div class="col-sm-12">
+                <p>Polje "Dimenzija table" podesava dimenzije table(visina i sirina su iste) za igru zmijica.</p>
+            </div>
+            <div class="col-sm-12">
+                <p>Polje "Tezina igre" podesava brzinu zmijice.</p>
+            </div>
+            <div class="col-sm-12">
+            </div>
+        </div>
+        <div class=" row justify-content-center text-center text-light">
+            <div class="col-sm-12 mt-5">
+                <h2>Konfiguracija</h2>
+            </div>
+            <div class="col-sm-12 bg-light"></div>
+            
+            <div class="col-sm-6">Dimenzija table:</div>
+            <div class="col-sm-6">Tezina igre:</div>
+        </div>
+        <div class="row justify-content-center text-center text-light">
+            <div class="col-sm-6">
+                <input type="range" min="30" max="45" value="40" class="range" id="dimension">
+                <span id="val-show">40</span>
+            </div>
+            <div class="col-sm-6">
+                <select  class="form-select" id="difficulty" name="difficulty">
+                    <option value="hard">Tesko</option>
+                    <option value="medium">Srednje</option>
+                    <option value="easy" selected>Lako</option>
+                </select>
+            </div>
+            
+            <div class="col-sm-6">
+                <p class="m-3">Vase ime:</p>
+            </div>
+            <div class="col-sm-6">
+                    <input id="player-name" type="text" name="player-name" class="m-3">
+            </div>
+            <div class="col-sm=12">
+                <button id="play-btn" class="btn btn-light text-dark btn-lg m-3">Igraj</button>
+            </div>
+            <div class="col-sm-12">
+                <a href="zmijica-rezultati.html" class="btn btn-light text-dark btn-lg">Rezultati</a>
+            </div>
+        </div>
+        
+        
+    </div>
+</body>
+</html>
