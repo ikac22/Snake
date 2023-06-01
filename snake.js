@@ -21,7 +21,6 @@ $(document).ready(function(){
                 break;
             }
     }
-
     if(player_index == players_best.length)
             players_best.push({
                 value: [],
@@ -41,7 +40,13 @@ $(document).ready(function(){
             diff: "easy" 
         }
     
-    
+    let speed = 100;
+    if(conf.diff === "easy")
+        speed = 200;
+    else if(conf.diff === "medium")
+        speed = 150;
+    else if(conf.diff === "hard")
+        speed = 100;    
 
     let table = $("<table></table>").css({"width": conf.dim*CELL_DIM+"px", "height": conf.dim*CELL_DIM+"px"});  
     let colors = ["#0d1b2a", "#1b263b"]
@@ -77,12 +82,12 @@ $(document).ready(function(){
         tail_y: 0,
         eaten: false,
     }
-    let pressed = false;
+    let score = 0;
     $(window).on({
         keydown: function(){
 
-            if(!pressed) pressed = true; else return;
-            if(event.which >=37 && event.which <= 40){
+            
+            if(event.which >=37 && event.which <= 40 && !((event.which == snake.dir + 2 || event.which == snake.dir - 2) && score > 0)){
                 //alert(event.which)
                 snake.dir = event.which;
                 let last = snake.tail_dir_change.slice(-1);
@@ -94,21 +99,20 @@ $(document).ready(function(){
                 });
             }
 
-            pressed = false;
+            
         },
         
     });
 
     // snake setup
-    let score = 0;
     let best = 0;
     
     const SNAKE_COLOR = "#3a86ff"
     
     
 
-    let handle = setInterval(move, 100);
-    let handle1 = setInterval(spawnSuperFood, 10000);
+    let handle = setTimeout(move, speed)
+    let handle1 = setInterval(spawnSuperFood, speed*2*conf.dim*2);
     
     function paintHead(){
         let cell = $("#"+snake.x+"_"+snake.y);
@@ -155,7 +159,7 @@ $(document).ready(function(){
             "width": CELL_DIM - 5,
             "height": CELL_DIM -5
         }));
-        setTimeout(eraseSuperFood, 3000);
+        setTimeout(eraseSuperFood, speed*2*conf.dim);
     }
 
     function eraseSuperFood(){
@@ -210,7 +214,6 @@ $(document).ready(function(){
             (cell.attr("type") == "snake")  
         ){
             alert("Game Ended!");
-            clearInterval(handle);
             clearInterval(handle1);
             return true;
         }
@@ -231,8 +234,15 @@ $(document).ready(function(){
     }
 
     function move(){
-        if(!snake.eaten){
-            eraseTail();
+	switch(snake.dir){
+            case keys.down: snake.x += 1; break;
+            case keys.up: snake.x-=1; break;
+            case keys.left: snake.y -= 1; break;
+            case keys.right: snake.y += 1; break;
+        }
+	let dead = die();
+        if(!snake.eaten && !dead){
+	    eraseTail();
             tailDirChange();
             switch(snake.tail_dir){
                 case keys.down: snake.tail_x += 1; break;
@@ -244,16 +254,11 @@ $(document).ready(function(){
         else
             snake.eaten = false;
 
-        switch(snake.dir){
-            case keys.down: snake.x += 1; break;
-            case keys.up: snake.x-=1; break;
-            case keys.left: snake.y -= 1; break;
-            case keys.right: snake.y += 1; break;
-        }
-        if(!die()){
+        if(!dead){
             eatFood();
             updateBest();
             paintHead();
+	    setTimeout(move, speed);
         }
         else{
             addBest();
